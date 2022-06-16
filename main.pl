@@ -31,6 +31,9 @@ encontrar_nota_siguiente(Nota, Semitonos, Nota_Incognita):-
     nota_siguiente(Nota, Nota_Siguiente),
     encontrar_nota_siguiente(Nota_Siguiente, ST1, Nota_Incognita).
 
+acorde(Nota, Tipo, NotaMedia, NotaMayor):-
+    Tipo == mayor, encontrar_nota_siguiente(Nota, 4, NotaMedia), encontrar_nota_siguiente(Nota, 7, NotaMayor);
+    Tipo == menor, encontrar_nota_siguiente(Nota, 3, NotaMedia), encontrar_nota_siguiente(Nota, 7, NotaMayor).
 
 
 
