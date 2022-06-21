@@ -51,6 +51,15 @@ nota_at_intervalo(Nota, Intervalo, Result):-intervalo(Intervalo, Distancia), get
 get_nota(Nota, Distancia, Result):- Distancia==1, siguiente_semitono(Nota, Result).
 get_nota(Nota, Distancia, Result):- Distancia>1, siguiente_semitono(Nota, Sig), Dist is Distancia -1, get_nota(Sig, Dist, Result).
 
+
+
+acorde(N1, N2, N3, Tipo, Nombre):-
+    acorde_mayor_fundamental(N1, Result), Result == [N1, N2, N3], acorde_generado(Tipo,'fundamental'), atom_concat(N1,'_mayor', Nombre);
+    acorde_menor_fundamental(N1, Result), Result == [N1, N2, N3], acorde_generado(Tipo,'fundamental'), atom_concat(N1,'_menor', Nombre).
+
+
+
+
 %get_acorde(Nota1, Nota2, Nota3, Nombre, Tipo):-
     % Acorde mayor
 
@@ -69,5 +78,4 @@ acorde_menor_fundamental(Nota, Result):-
     acorde_generado([Nota, Nota2, Nota3], Result).
 
 acorde_generado(X, X).
-
 
